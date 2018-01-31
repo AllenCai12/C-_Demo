@@ -1,5 +1,5 @@
-#ifndef _LINE_H_
-#define _LINE_H_
+#ifndef CPP_LINE_H
+#define CPP_LINE_H
 
 #include <iostream>
 using namespace std;
