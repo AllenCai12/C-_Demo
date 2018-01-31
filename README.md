@@ -1,2 +1,2 @@
-# C-_Demo
+# Demo
 this is a repo for c++ base knowledge
