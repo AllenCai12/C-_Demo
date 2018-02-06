@@ -1,8 +1,8 @@
 #include "Line.h"
 
-Line::Line(int length) 
+Line::Line()
 {
-    m_length = length;
+
 }
 
 void Line::setLength(int length)
