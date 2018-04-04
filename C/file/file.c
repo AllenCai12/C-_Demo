@@ -17,17 +17,32 @@ int test_file_position(FILE *fp)
     printf("position:%ld\n", ftell(fp));
 }
 
+int save_data_to_file(void *data, int size)
+{
+    FILE *fp;
+    int ret;
+
+    assert(data);
+    do {
+        fp = fopen("/tmp/led_data.dsp", "r+");
+        if (fp == NULL) {
+            perror("open file");
+            break;
+        }
+
+        fseek(fp, 0, SEEK_END);
+        fwrite(data, 1, size, fp);
+    } while(0);
+
+    if (fp != NULL) {
+        fclose(fp);
+    }
+}
+
 int main(int argc, char **argv)
 {
-    FILE *fp, *fp_a;
-    int ret;
-    char buf[256];
 
-    assert(argv[1]);
-    fp = fopen(argv[1], "w");
-
-    fseek(fp, 0, SEEK_END);
-    fwrite("hello world", 1, sizeof("hello world"), fp);
+    save_data_to_file(argv[1], strlen(argv[1]));
 
 #if 0
     fp_a = fopen("/tmp/test.wav", "w+");
@@ -66,8 +81,6 @@ int main(int argc, char **argv)
  #endif
 
 
-
-    fclose(fp);
 
     return 0;
 
