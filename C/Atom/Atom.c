@@ -44,6 +44,7 @@ const char *Atom_int(long n)
     for (i=sizeof(str)-1; str[i] != '0'; i--) {
         printf("%c", str[i]);
     }
+    printf("\n");
 
     return  NULL;
 }

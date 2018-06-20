@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
-#include <unistd.h>
 
 
 
@@ -79,7 +78,6 @@ int main(int argc, char **argv)
 
     fwrite("OK", sizeof(char), 3, fp);
  #endif
-
 
 
     return 0;

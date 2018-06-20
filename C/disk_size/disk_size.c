@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 
     unsigned long long freeDisk = diskInfo.f_bfree * blocksize; //剩余空间的大小  
     unsigned long long availableDisk = diskInfo.f_bavail * blocksize;   //可用空间大小  
-    printf("Disk_free = %llu MB = %llu GB\nDisk_available = %llu MB = %llu GB\n",   
-            freeDisk>>20, freeDisk>>30, availableDisk>>20, availableDisk>>30);  
+    printf("Disk_free = %llu KB = %llu MB = %llu GB\nDisk_available = %llu KB = %llu MB = %llu GB\n",   
+           freeDisk>>10,  freeDisk>>20, freeDisk>>30, availableDisk>>10, availableDisk>>20, availableDisk>>30);  
 
     return 0;  
 }  

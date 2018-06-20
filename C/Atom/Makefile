@@ -1,12 +1,17 @@
-CC=gcc
-
+#CC=gcc
+TOOL_CHAIN := arm-hisiv400-linux-
+TARGET_DIR := /home/alan/work/tmp/nfs
+CC = $(TOOL_CHAIN)gcc
 SRC := $(wildcard *.c)
 OBJS := ${SRC:.c=.o}
-TARGET := main
+TARGET := $(TARGET_DIR)/main
+FLAG := -ggdb
 
 all: $(TARGET)
 	@echo $(SRC)
 $(TARGET): $(OBJS) 
-	$(CC) $^ -o $@
+	$(CC)  $(FALG) $^  -o $@
 %.o : %.c
-	$(CC) -c $^ -o $@
+	$(CC) $(FLAG) -c $^ -o $@
+clean :
+	rm *.o

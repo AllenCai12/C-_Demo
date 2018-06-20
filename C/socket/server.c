@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <unistd.h>
 
 
 
@@ -36,6 +37,11 @@ int main(int argc, char **argv)
     memset(&my_addr, 0, sizeof(struct sockaddr_un));
     my_addr.sun_family = AF_UNIX;
     strncpy(my_addr.sun_path, MY_SOCKER_PATH, sizeof(my_addr.sun_path) -1);
+
+    ret = unlink(MY_SOCKER_PATH);
+    if (ret < 0 ) {
+        handle_error("unlink"); 
+    }
 
     ret = bind(sfd, (struct sockaddr *)&my_addr, sizeof(struct sockaddr_un));
     if (ret == -1) {

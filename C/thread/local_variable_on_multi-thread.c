@@ -16,7 +16,6 @@ struct test{
 };
 
 
-
 void print_message(void *ptr)
 {
     int *t;
