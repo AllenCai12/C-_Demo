@@ -9,6 +9,7 @@ pthread_cond_t notempty = PTHREAD_COND_INITIALIZER;     //是否队空
 
 int top = 0;  
 int bottom = 0;  
+static 
 
 void* produce(void* arg)  
 {  
@@ -19,12 +20,12 @@ void* produce(void* arg)
         while ((top+1)%MAX == bottom)  
         {  
             printf("full! producer is waiting\n");  
-            pthread_cond_wait(¬full, &mutex);//等待队不满  
+            pthread_cond_wait(&notfull, &mutex);//等待队不满  
         }  
 
         top = (top+1) % MAX;  
         printf("now top is %d\n", top);  
-        pthread_cond_signal(¬empty);//发出队非空的消息  
+        pthread_cond_signal(&notempty);//发出队非空的消息  
 
         pthread_mutex_unlock(&mutex);  
     }  
@@ -35,16 +36,18 @@ void* consume(void* arg)
 {  
     int i;  
     for ( i = 0; i < MAX*2; i++)  
-    {  
-        pthread_mutex_lock(&mutex);  
+    {
+        pthread_mutex_lock(&mutex);
+
         while ( top%MAX == bottom)  
         {  
             printf("empty! consumer is waiting\n");  
-            pthread_cond_wait(¬empty, &mutex);//等待队不空  
-        }  
+            pthread_cond_wait(&notempty, &mutex);//等待队不空  
+        }
+
         bottom = (bottom+1) % MAX;  
         printf("now bottom is %d\n", bottom);  
-        pthread_cond_signal(¬full);//发出队不满的消息  
+        pthread_cond_signal(&notfull);//发出队不满的消息  
 
         pthread_mutex_unlock(&mutex);  
     }  

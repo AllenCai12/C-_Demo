@@ -1,0 +1,38 @@
+
+CC 		:= gcc
+CFLAG 	:= -I./inc -ggdb
+LD		:= -lpthread
+TARGET := Main
+
+.PHONY: clean
+
+#目录
+OBJ_DIR = ./obj
+INC_DIR	= ./inc
+SRC_DIR = ./src
+DIR_MAKE = $(OBJ_DIR)
+
+SRC := ${wildcard src/*.c}
+
+#.o文件
+OBJ := ${SRC:.c=.o}
+OBJ := ${notdir $(OBJ)}
+OBJ := ${addprefix $(OBJ_DIR)/, $(OBJ)}
+
+all: $(DIR_MAKE) $(TARGET)
+
+$(DIR_MAKE):
+	mkdir $@
+
+$(TARGET) : $(OBJ)
+	$(CC) $^ $(CFLAG) $(LD)   -o $@
+
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+	$(CC) -c $(CFLAG)   $<  -o $@
+
+clean:
+	rm $(OBJ_DIR) -fr
+
+test:
+	@echo ${SRC}
+	@echo ${OBJ}
