@@ -4,6 +4,7 @@ using  namespace std;
 
 Point::Point(int x, int y)
 {
+   cout<<"construct point" <<endl;
     m_x = x;
     m_y = y;
 }

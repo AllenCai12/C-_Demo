@@ -5,9 +5,9 @@ int main(int argc, char **argv)
 {
     Line l(12);
 
-    Point p(1, 2);
+//    Point p(1, 2);
 
-    p.printPoint();
+//   p.printPoint();
     cout << l.getLength() << endl;
     return 0;
 }

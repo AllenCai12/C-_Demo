@@ -6,8 +6,8 @@
 
 int main(int argc , char* argv[])
 {
-    int w = 1280;
-    int h = 760;
+    int w = 960;
+    int h = 576;
     char c = 'n';
 
     FILE* fp;
@@ -28,9 +28,9 @@ int main(int argc , char* argv[])
     }
     atexit(SDL_Quit);
 
-    SDL_Surface* screen = SDL_SetVideoMode(w, h, 0, 0);
+    SDL_Surface* screen = SDL_SetVideoMode(1920, 1080, 0, SDL_SWSURFACE);
     if (screen == NULL){
-        fprintf(stderr, "create surface error!\n");
+        fprintf(stderr, "create surface error: %s!\n", SDL_GetError());
         exit(1);
     }
 
@@ -99,8 +99,10 @@ int main(int argc , char* argv[])
     free(pU);
     free(pV);
 
-    while (c != 'q')
-        scanf("%c", &c);
+    getchar();
+    getchar();
+    getchar();
+
 
     SDL_FreeYUVOverlay(overlay);
     SDL_FreeSurface(screen);

@@ -12,7 +12,7 @@ private:
     int m_length;   
         
 public:
-    Line();
+    Line(int l);
     void setLength(int length);
     int getLength();
 };

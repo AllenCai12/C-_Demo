@@ -38,9 +38,11 @@ void create_pthread_a(int i)
 //right demo
 void *handle(void *ptr)
 {
-    pthread_mutex_lock(&testlock); 
-    printf("value : %d\n", (int)ptr);
-    pthread_mutex_unlock(&testlock); 
+    while(1) {
+        pthread_mutex_lock(&testlock); 
+        printf("value : %d\n", (int)ptr);
+        pthread_mutex_unlock(&testlock); 
+    }
 }
 
 void create_pthread(int i)
@@ -58,13 +60,15 @@ int main(int argc, char *argv)
 
     create_pthread(10);
     create_pthread(2);
+    #if 0
     create_pthread(3);
     create_pthread(11);
     create_pthread(21);
     create_pthread(31);
+    #endif
 
+    sleep(10);
     pthread_mutex_destroy(&testlock); 
-    sleep(3);
     return 0;
 }
 

@@ -9,10 +9,18 @@ void handl(int sig)
     
 }
 
+void handl1(int sig) 
+{
+    printf("sig1 = %d\n", sig);
+    
+}
+
+
 int main(int argc, char **argv)
 {
 
     signal(SIGINT, handl); 
+    signal(SIGINT, handl1); 
     do {
         scanf("%d", &stop);
 
